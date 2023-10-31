@@ -1,0 +1,2 @@
+table|Urbanization|Urbanization|2|CREATE TABLE Urbanization
+(state text, cd integer, pvi_22 real, urbanindex real, rural real, exurban real, suburban real, urban real, grouping text)
