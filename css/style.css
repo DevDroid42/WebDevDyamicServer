@@ -1,0 +1,66 @@
+body {
+    font-family: Arial;
+    padding: 10px;
+    background: #f1f1f1;
+}
+.topnav {
+    width: 100%;
+    overflow: auto;
+    background-color:darkslategray;
+  }
+  
+  /* Style the topnav links */
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    width: 25%;
+}
+  
+  /* Change color on hover */
+.topnav a:hover {
+    background-color: white;
+    color: blue;
+}
+h1 {
+    font-size: 3rem;
+    background-color: darkslategray;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+h2 {
+    font-size: 2.5rem;
+    border-bottom: 1px solid darkslategray;
+}
+h3 { 
+    font-size: 1.75rem;
+    border-bottom: 1px solid darkslategray;
+}
+h4 {
+    font-size: 1.25rem;
+}
+h5 {
+    font-size: 1.25rem;
+}
+p {
+    font-size: 1rem;
+}
+.indented { 
+    text-indent: 35px;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+  }
+  
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}

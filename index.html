@@ -1,61 +1,105 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Urbanization Home</title>
-	<link rel="stylesheet" href="css/foundation.css">
-</head>
-<body>
-    <div class="off-canvas-wrapper">
-        <!-- Your menu or Off-canvas content goes here -->
-        <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
-            <!-- Close button -->
-            <button class="close-button" aria-label="Close menu" type="button" data-close>
-                <span aria-hidden="true">&times;</span>
-            </button>
-
-            <!-- Menu -->
-            <ul class="vertical menu">
-                <li><a href="#">Foundation</a></li>
-                <li><a href="#">Dot</a></li>
-                <li><a href="#">ZURB</a></li>
-                <li><a href="#">Com</a></li>
-                <li><a href="#">Slash</a></li>
-                <li><a href="#">Sites</a></li>
-            </ul>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewpoint" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="css/foundation.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+        <div class="off-canvas-content" data-off-canvas-content>
+            <div class="grid-container">
+                <div class="grid-x grid-padding-x">   
+                    <div class="cell small-12 medium-12 large-12" style="background-color: white;">
+                        <h4>
+                            <div class="topnav">
+                                <a href="index.html" targets="_self">Home </a>
+                                <a href="templates/dynamicTemp1.html" targets="_self">Dynamic Route 1</a>
+                                <a href="sources.html" targets="_self">Sources</a>
+                                
+                                <!--<a href="projects.html" target="_self"> </a>
+                                <a href="resume.html" target="_self">Resume </a>
+                                <a href="fun.html" target="_self"> Hobbies & Personal</a>  
+                                --> 
+                            </div>
+                        </h4>
+                    </div>
+                </div>
+            </div>
         </div>
+    <title>Home</title>
+    </head>
+    <body>
+       
         <!-- Your page content lives here -->
         <div class="off-canvas-content" data-off-canvas-content>
             <!-- main content within a `grid-container` -->
             <div class="grid-container">
                 <!-- `grid-x` represents a row -->
                 <div class="grid-x grid-padding-x">
-                    <div class="cell small-6 large-4" style="background-color: #ADD8E6;">Small 6 / Large 4</div>
-                    <div class="cell small-6 large-8" style="background-color: #90EE90;">Small 6 / Large 8</div>
-                </div>
-                
-                <div class="grid-x grid-padding-x">
-                    <div class="cell large-auto" style="background-color: #ADD8E6;">One</div>
-                    <div class="cell large-auto" style="background-color: #90EE90;">Two</div>
-                    <div class="cell large-auto" style="background-color: #ADD8E6;">Three</div>
-                    <div class="cell large-auto" style="background-color: #90EE90;">Four</div>
-                    <div class="cell large-auto" style="background-color: #ADD8E6;">Five</div>
-                </div>
-                
-                <div class="grid-x grid-padding-x">
-                    <button type="button" class="cell large-auto button" data-toggle="offCanvas">Open Menu</button>
+                                
+                    <div class="cell small-12 medium-12 large-12" style="background-color: white;">
+                        <h1> Urbanization in the United States </h1>
+                        <h3>About Our Dataset</h3>
+                        <p>The dataset contains information on each congressional district, including its urbanization index 
+                        value, its categorization based on that value and the share of its population living in types of census tracts. The
+                        urbanization index is calculated as the natural logarithm of the average number of people living within
+                        a five mile radius of all census tracts in each district, based on a weigted average of the population
+                        of each census tract. The population data is derived from the 2020 census, meaning that the population data 
+                        is as reliable and up to date as possible. From these calculations, we are provided with a numerical value
+                        in regard to how urban or rural a district is. Using urban and rural as the two ends of the spectrum,
+                        the researchers created a list of other terms in between, which refer to the following:
+                        </p>
+                        <div>
+                            <ul>
+                                <li>Dense Urban: urbanization index of 13 or higher</li>
+                                <li>Urban-Suburban: urbanization index of 12.5 to 13</li>
+                                <li>Dense Suburban: urbanization index from 11.5 to 12.5</li>
+                                <li>Suburban-Exurban: urbanization index from 10.5 to 11.5</li>
+                                <li>Rural-Exurban: urbanization index of 9.5 to 10.5</li>
+                                <li>Mostly Rural: urbanization index below 9.5</li>
+                            </ul>
+                        </div>
+                        <p>
+                            Districts also have relatively similar shares of their population 
+                            living in census tracts which are defined as rural, exurban, suburban,
+                            or urban. The categories are defined as follows:
+
+                        </p>
+                        <div>
+                            <ul>
+                                <li>Rural: fewer than 25,000 people live within a five mile radius of a 
+                                    census tract</li>
+                                <li>Exurban: between 25,000 and 99,999 within a five mile radius</li>
+                                <li>Suburban: between 100,000 and 249,999 within a five mile radius</li>
+                                <li>Urban: 250,000 or more within a 5 mile radius</li>
+                            </ul>
+                        </div>
+                        <h3>Dictionary</h3>
+                        <p>
+                            <div>
+                                <ul>
+                                    <li>stcd: A character variable containing the state abbreviation and congressional district number of the district observation. A concatenated variable of “state” and “cd” variables. The congressional districts for at-large seats in states with only one district are listed as 01 (for example, Alaskas lone seat is AK-01).</li> 
+                                    <li>State: The state abbreviation</li>
+                                    <li>cd: The congressional district number</li>
+                                    <li>pvi_22: FiveThirtyEights partisan lean for each congressional district ahead of the 2022 midterm elections. Positive values indicate a Democratic lean, negative values indicate a Republican lean. Partisan lean is the average margin difference between how a state or district votes and how the country votes overall. This version of partisan lean, meant to be used for congressional and gubernatorial elections, is calculated as 50 percent the state or districts lean relative to the nation in the most recent presidential election, 25 percent its relative lean in the second-most-recent presidential election and 25 percent a custom state-legislative lean based on the statewide popular vote in the last four state House elections.</li>
+                                    <li>urbanIndex: FiveThirtyEights urbanization index for each congressional district. The urbanization index is the natural logarithm of the average number of people living within a five-mile radius of every census tract in a given district, based on a weighted average of the population of each census tract in the 2020 census.</li>
+                                    <li>Grouping: FiveThirtyEights categorization of congressional districts based on their urbanization index. Dense Urban districts have an urbanization index of 13 or higher; Urban-Suburban districts have an urbanization index from 12.5 up to 13; Dense Suburban districts have an urbanization index from 11.5 up to 12.5; Suburban-Exurban districts have an urbanization index from 10.5 up to 11.5; Rural-Exurban districts have an urbanization index from 9.5 up to 10.5; and Mostly Rural districts have an urbanization index below 9.5.</li>
+                                </ul>
+                            </div>
+                        </p>
+
+
+                        
+                    </div>
+                    <div class="cell small-12 medium-12 large-12" style="background-color: white; margin-right: auto;">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- include before closing <body> tag -->
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/vendor/what-input.js"></script>
-    <script src="js/vendor/foundation.js"></script>
-    <script type="application/javascript">
-        $(document).foundation();
-    </script>
-</body>
+        <script src="js/vendor/jquery.js"></script>
+        <script src="js/vendor/what-input.js"></script>
+        <script src="js/vendor/foundation.js"></script>
+        <script type="application/javascript">
+            $(document).foundation();
+        </script>
+    </body>
 </html>
