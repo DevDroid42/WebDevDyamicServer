@@ -21,6 +21,25 @@ const db = new sqlite3.Database(path.join(__dirname, 'urbanization.sqlite3'), sq
     }
 });
 
+function tableGeneration(list){
+    let res = "<table>\n";
+    res += "<thead><tr>\n"
+    for (const key of Object.keys(list[0])) {
+        res += "<th>" + key + "</th>\n"  
+    }
+    res += "</tr></thead>\n"
+    for (let i = 0; i < list.length; i++) {
+        const element = list[i];
+        res += "<tr>"
+        for (const [key, value] of Object.entries(element)) {
+            res += "<td>" + value + "</td>\n"  
+         }
+        res += "</tr>";
+    }
+    res += "</table>\n";
+    return res;
+}
+
 
 function queryDatabase(query, params){
     return new Promise((Resolve, Reject) =>{
@@ -53,6 +72,17 @@ app.use(express.static(root));
 app.get('/', (req, res) => {
     Promise.all([getTemplate('dynamicTemp1.html'), queryDatabase("SELECT * FROM Urbanization")]).then(values=>{
         res.status(200).type('text').send(values[0] + values[1]);
+    }).catch(err => {
+        res.status(500).type('text').send("internal server error: \n" + err);
+    });
+});
+
+//this template can be copied for other routes
+app.get('/politicalCorrelationByState/:state', (req, res) => {
+    let state = req.params.state.toUpperCase();
+    Promise.all([getTemplate('politicalCorrelationByState.html'),
+    queryDatabase("SELECT * FROM Urbanization WHERE State=?", [state])]).then(values=>{
+        res.status(200).type('html').send(values[0].replace("$data$", tableGeneration(values[1])));
     }).catch(err => {
         res.status(500).type('text').send("internal server error: \n" + err);
     });
