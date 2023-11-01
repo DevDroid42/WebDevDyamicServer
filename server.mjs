@@ -70,24 +70,8 @@ app.use(express.static(root));
 
 //this template can be copied for other routes
 app.get('/', (req, res) => {
-    Promise.all([getTemplate('index.html')]).then(values=>{
-        res.status(200).type('html').send(values[0]);
-    }).catch(err => {
-        res.status(500).type('text').send("internal server error: \n" + err);
-    });
-});
-
-app.get('/index', (req, res) => {
-    Promise.all([getTemplate('index.html')]).then(values=>{
-        res.status(200).type('html').send(values[0]);
-    }).catch(err => {
-        res.status(500).type('text').send("internal server error: \n" + err);
-    });
-});
-
-app.get('/sources', (req, res) => {
-    Promise.all([getTemplate('sources.html')]).then(values=>{
-        res.status(200).type('html').send(values[0]);
+    Promise.all([getTemplate('dynamicTemp1.html'), queryDatabase("SELECT * FROM Urbanization")]).then(values=>{
+        res.status(200).type('text').send(values[0] + values[1]);
     }).catch(err => {
         res.status(500).type('text').send("internal server error: \n" + err);
     });
@@ -96,7 +80,6 @@ app.get('/sources', (req, res) => {
 //this template can be copied for other routes
 app.get('/politicalCorrelationByState/:state', (req, res) => {
     let state = req.params.state.toUpperCase();
-    let response = response.replace('$$$STATE_NAME$$$', state);
     Promise.all([getTemplate('politicalCorrelationByState.html'),
     queryDatabase("SELECT * FROM Urbanization WHERE State=?", [state])]).then(values=>{
         res.status(200).type('html').send(values[0].replace("$data$", tableGeneration(values[1])));
