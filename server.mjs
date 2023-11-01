@@ -77,6 +77,22 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/index', (req, res) => {
+    Promise.all([getTemplate('index.html')]).then(values=>{
+        res.status(200).type('html').send(values[0]);
+    }).catch(err => {
+        res.status(500).type('text').send("internal server error: \n" + err);
+    });
+});
+
+app.get('/sources', (req, res) => {
+    Promise.all([getTemplate('sources.html')]).then(values=>{
+        res.status(200).type('html').send(values[0]);
+    }).catch(err => {
+        res.status(500).type('text').send("internal server error: \n" + err);
+    });
+});
+
 //this template can be copied for other routes
 app.get('/politicalCorrelationByState/:state', (req, res) => {
     let state = req.params.state.toUpperCase();
