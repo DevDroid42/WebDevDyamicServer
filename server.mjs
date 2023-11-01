@@ -80,6 +80,7 @@ app.get('/', (req, res) => {
 //this template can be copied for other routes
 app.get('/politicalCorrelationByState/:state', (req, res) => {
     let state = req.params.state.toUpperCase();
+    let response = response.replace('$$$STATE_NAME$$$', state);
     Promise.all([getTemplate('politicalCorrelationByState.html'),
     queryDatabase("SELECT * FROM Urbanization WHERE State=?", [state])]).then(values=>{
         res.status(200).type('html').send(values[0].replace("$data$", tableGeneration(values[1])));
