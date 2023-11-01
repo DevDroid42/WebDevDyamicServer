@@ -70,8 +70,8 @@ app.use(express.static(root));
 
 //this template can be copied for other routes
 app.get('/', (req, res) => {
-    Promise.all(['index.html', queryDatabase("SELECT * FROM Urbanization")]).then(values=>{
-        res.status(200).type('html').send(values[0] + values[1]);
+    Promise.all([getTemplate('index.html')]).then(values=>{
+        res.status(200).type('html').send(values[0]);
     }).catch(err => {
         res.status(500).type('text').send("internal server error: \n" + err);
     });
