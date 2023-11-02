@@ -105,7 +105,6 @@ function barGraphGeneration(list){
     let res = "<script>\n";
     res += "BAR = document.getElementById('bar');\n";
     
-
     const x_axis_values = [];
     const y_axis_values = [];
     for (let i = 0; i < list.length; i++) {
@@ -113,6 +112,7 @@ function barGraphGeneration(list){
         //x_axis_values.push(list[i]["state"] + "-" + list[i]["cd"]);
         y_axis_values.push(list[i]["pvi_22"]);
     }
+    console.log(x_axis_values);
     var data = [
         {
             x: x_axis_values,
