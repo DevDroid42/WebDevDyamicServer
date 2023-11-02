@@ -7,30 +7,58 @@
         <meta name="viewpoint" content="width=device-width, initial-scale=1"/>
         <title> Template </title>
         <link rel="stylesheet" href="/css/style.css"/>
-        <link rel="stylesheet" href="/css/foundation.css"/>
+        <link rel="stylesheet2" href="/css/foundation.css"/>
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <div class="off-canvas-content" data-off-canvas-content>
+            <div class="grid-container">
+                <div class="grid-x grid-padding-x">   
+                    <div class="cell small-12 medium-12 large-12" style="background-color: white;">
+                        <h4>
+                            <div class="topnav">
+                                <a href="/index" targets="_self">Home </a>
+                                <a href="/politicalCorrelationByState/MN" targets="_self">Route 1</a>
+                                <a href="/pviGreaterThan" targets="_self">Route 2</a>
+                                <a href="/pviByGrouping/Dense Urban" targets="_self">Route 3</a>
+                                <a href="/sources" targets="_self">Sources</a>
+                            </div>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>        
     </head>
     <Body>
-        <h3>See pvi values greater than:</h3>
-        <form method="get" action="/pviGreaterThan">
-            <input type="number" name="value">
-            <button type="submit">Submit</button>
-        </form>
-        <h3>See pvi values less than:</h3>
-        <form method="get" action="/pviLessThan">
-            <input type="number" name="value">
-            <button type="submit">Submit</button>
-        </form>
-        <h1>theader</h1>
-        $data$  
-        <div id="scatter" style="width:600px;height:250px"></div>
-        <script>
-            SCATTER = document.getElementById('scatter');
-            Plotly.newPlot(SCATTER, [{
-                x: [$xAxis$],
-                y: [$yAxis$],
-                type: 'scatter'
-            }]);
-        </script>      
+        <!-- Your page content lives here -->
+        <div class="off-canvas-content" data-off-canvas-content>
+            <!-- main content within a `grid-container` -->
+            <div class="grid-container">
+                <!-- `grid-x` represents a row -->
+                <div class="grid-x grid-padding-x">
+                    <div class="cell small-12 medium-12 large-12" style="background-color: white;">
+                        <h3>See pvi values greater than:</h3>
+                        <form method="get" action="/pviGreaterThan">
+                            <input type="number" name="value">
+                            <button type="submit">Submit</button>
+                        </form>
+                        <h3>See pvi values less than:</h3>
+                        <form method="get" action="/pviLessThan">
+                            <input type="number" name="value">
+                            <button type="submit">Submit</button>
+                        </form>
+                        <h1>theader</h1>
+                        $data$  
+                        <div id="scatter" style="width:600px;height:250px"></div>
+                        <script>
+                            SCATTER = document.getElementById('scatter');
+                            Plotly.newPlot(SCATTER, [{
+                                x: [$xAxis$],
+                                y: [$yAxis$],
+                                type: 'scatter'
+                            }]);
+                        </script>      
+                    </div>
+                </div>
+            </div>
+        </div>
     </Body>
 </html>
