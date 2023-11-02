@@ -242,9 +242,7 @@ app.get('/politicalCorrelationByState/:state', (req, res) => {
         }
     });
     for (let index = 0; index < states.length; index++) {
-        const currState = states[index];
-        if 
-        
+        const currState = states[index];        
     }
     Promise.all([getTemplate('politicalCorrelationByState.html'),
     queryDatabase("SELECT * FROM Urbanization WHERE State=?", [state])]).then(values=>{
