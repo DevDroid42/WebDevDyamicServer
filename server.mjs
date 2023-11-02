@@ -130,8 +130,8 @@ app.use(express.static(root));
 
 //this template can be copied for other routes
 app.get('/', (req, res) => {
-    Promise.all([getTemplate('dynamicTemp1.html'), queryDatabase("SELECT * FROM Urbanization")]).then(values=>{
-        res.status(200).type('text').send(values[0] + values[1]);
+    getTemplate('index.html').then(data=>{
+        res.status(200).type('html').send(data);
     }).catch(err => {
         res.status(500).type('text').send("internal server error: \n" + err);
     });
