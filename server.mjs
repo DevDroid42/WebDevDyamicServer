@@ -104,6 +104,17 @@ app.get('/politicalCorrelationByState/:state', (req, res) => {
     });
 });
 
+//this template can be copied for other routes
+app.get('/pviByGrouping/:group', (req, res) => {
+    let group = req.params.group.toUpperCase();
+    Promise.all([getTemplate('pviByGrouping.html'),
+    queryDatabase("SELECT * FROM Urbanization WHERE Grouping='?'", [group])]).then(values=>{
+        res.status(200).type('html').send(values[0].replace("$data$", tableGeneration(values[1])));
+    }).catch(err => {
+        res.status(500).type('text').send("internal server error: \n" + err);
+    });
+});
+
 app.listen(port, () => {
     console.log('Now listening on port ' + port);
 });
