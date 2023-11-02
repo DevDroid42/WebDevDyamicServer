@@ -257,9 +257,9 @@ app.get('/pviByGrouping/:group', (req, res) => {
     Promise.all([getTemplate('pviByGrouping.html'),
     queryDatabase("SELECT pvi_22 FROM Urbanization WHERE grouping=?", [group])]).then(values=>{
         res.status(200).type('html').send(
-            values[0].replace("$data$", tableGeneration(values[1])))
+            values[0].replace("$data$", tableGeneration(values[1]))
             .replace("$xAxis$", scatterGraphXAxisGeneration(values[1]))
-            .replace("$yAxis$", scatterGraphYAxisGeneration(values[1])
+            .replace("$yAxis$", scatterGraphYAxisGeneration(values[1]))
         );
     }).catch(err => {
         res.status(500).type('text').send("internal server error: \n" + err);
