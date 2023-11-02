@@ -22,6 +22,15 @@
             <button type="submit">Submit</button>
         </form>
         <h1>theader</h1>
-        $data$        
+        $data$  
+        <div id="scatter" style="width:600px;height:250px"></div>
+        <script>
+            SCATTER = document.getElementById('scatter');
+            Plotly.newPlot(SCATTER, [{
+                x: [$xAxis$],
+                y: [$yAxis$],
+                type: 'scatter'
+            }]);
+        </script>      
     </Body>
 </html>

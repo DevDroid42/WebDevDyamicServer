@@ -8,9 +8,19 @@
         <title> Template </title>
         <link rel="stylesheet" href="../../css/style.css"/>
         <link rel="stylesheet" href="css/foundation.css"/>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     </head>
     <Body>
         <h1>header</h1>
         $data$
+        <div id="scatter" style="width:600px;height:250px"></div>
+        <script>
+            SCATTER = document.getElementById('scatter');
+            Plotly.newPlot(SCATTER, [{
+                x: [$xAxis$],
+                y: [$yAxis$],
+                type: 'scatter'
+            }]);
+        </script>
     </Body>
 </html>

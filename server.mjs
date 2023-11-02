@@ -126,6 +126,7 @@ function barGraphXAxisGeneration(list){
     res += "</script>\n";
     return x_axis_values;
 }
+
 function barGraphYAxisGeneration(list){
     let res = "<script>\n";
     res += "BAR = document.getElementById('bar');\n";
@@ -150,6 +151,53 @@ function barGraphYAxisGeneration(list){
     return y_axis_values;
 }
 
+function scatterGraphXAxisGeneration(list){
+    let res = "<script>\n";
+    res += "BAR = document.getElementById('bar');\n";
+    
+    const x_axis_values = [];
+    const y_axis_values = [];
+    for (let i = 0; i < list.length; i++) {
+        //x_axis_values.push(list[i]["stcd"]);
+        x_axis_values.push(list[i]["grouping"]);
+        y_axis_values.push(list[i]["pvi_22"]);
+    }
+    console.log(x_axis_values);
+    var data = [
+        {
+            x: x_axis_values,
+            y: y_axis_values,
+            type: 'bar'
+        }
+    ];
+    res += "Plotly.newPlot('BAR', " + data + ");\n";
+    res += "</script>\n";
+    return x_axis_values;
+}
+
+function scatterGraphYAxisGeneration(list){
+    let res = "<script>\n";
+    res += "BAR = document.getElementById('bar');\n";
+    
+    const x_axis_values = [];
+    const y_axis_values = [];
+    for (let i = 0; i < list.length; i++) {
+        //x_axis_values.push(list[i]["stcd"]);
+        x_axis_values.push(list[i]["grouping"]);
+        y_axis_values.push(list[i]["pvi_22"]);
+    }
+    console.log(x_axis_values);
+    var data = [
+        {
+            x: x_axis_values,
+            y: y_axis_values,
+            type: 'bar'
+        }
+    ];
+    res += "Plotly.newPlot('BAR', " + data + ");\n";
+    res += "</script>\n";
+    return y_axis_values;
+}
 
 function queryDatabase(query, params){
     return new Promise((Resolve, Reject) =>{
@@ -210,6 +258,8 @@ app.get('/pviByGrouping/:group', (req, res) => {
     Promise.all([getTemplate('pviByGrouping.html'),
     queryDatabase("SELECT pvi_22 FROM Urbanization WHERE grouping=?", [group])]).then(values=>{
         res.status(200).type('html').send(values[0].replace("$data$", tableGeneration(values[1])));
+        res.status(200).type('html').send(values[0].replace("$xAxis$", scatterGraphXAxisGeneration(values[1])));
+        res.status(200).type('html').send(values[0].replace("$yAxis$", scatterGraphYAxisGeneration(values[1])));
     }).catch(err => {
         res.status(500).type('text').send("internal server error: \n" + err);
     });
@@ -222,6 +272,8 @@ app.get('/pviGreaterThan', (req, res) => {
     Promise.all([getTemplate('greaterThanLessThan.html'),
     queryDatabase("SELECT * FROM Urbanization WHERE pvi_22>?", [value])]).then(values=>{
         res.status(200).type('html').send(values[0].replace("$data$", tableGeneration(values[1])));
+        res.status(200).type('html').send(values[0].replace("$xAxis$", scatterGraphXAxisGeneration(values[1])));
+        res.status(200).type('html').send(values[0].replace("$yAxis$", scatterGraphYAxisGeneration(values[1])));
     }).catch(err => {
         res.status(500).type('text').send("internal server error: \n" + err);
     });
@@ -234,6 +286,8 @@ app.get('/pviLessThan', (req, res) => {
     Promise.all([getTemplate('greaterThanLessThan.html'),
     queryDatabase("SELECT * FROM Urbanization WHERE pvi_22<?", [value])]).then(values=>{
         res.status(200).type('html').send(values[0].replace("$data$", tableGeneration(values[1])));
+        res.status(200).type('html').send(values[0].replace("$xAxis$", scatterGraphXAxisGeneration(values[1])));
+        res.status(200).type('html').send(values[0].replace("$yAxis$", scatterGraphYAxisGeneration(values[1])));
     }).catch(err => {
         res.status(500).type('text').send("internal server error: \n" + err);
     });
