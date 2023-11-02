@@ -5,6 +5,7 @@ import * as url from 'node:url';
 import { default as express } from 'express';
 import { default as sqlite3 } from 'sqlite3';
 import { rejects } from 'node:assert';
+import { default as Plotly } from 'plotly.js-dist-min';
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
@@ -103,6 +104,28 @@ function tableGeneration(list){
     return res;
 }
 
+function barGraphGeneration(list){
+    let res = "<script>\n";
+    res += "BAR = document.getElementById('bar');\n";
+    
+    const x_axis_values = [];
+    const y_axis_values = [];
+    for (let i = 0; i < list.length; i++) {
+        x_axis_values.push(list[i]["stcd"]);
+        //x_axis_values.push(list[i]["state"] + "-" + list[i]["cd"]);
+        y_axis_values.push(list[i]["pvi_22"]);
+    }
+    console.log(x_axis_values);
+    var data = [
+        {
+            x: x_axis_values,
+            y: y_axis_values,
+            type: 'bar'
+        }
+    ];
+    res += "Plotly.newPlot('BAR', " + data + ");\n";
+    res += "</script>\n";
+}
 
 function queryDatabase(query, params){
     return new Promise((Resolve, Reject) =>{
@@ -147,6 +170,7 @@ app.get('/politicalCorrelationByState/:state', (req, res) => {
     queryDatabase("SELECT * FROM Urbanization WHERE State=?", [state])]).then(values=>{
         console.log(values[0].replace("$data$", tableGeneration(values[1])));
         res.status(200).type('html').send(values[0].replace("$data$", tableGeneration(values[1])));
+        res.status(200).type('html').send(values[0].replace("$graph$", barGraphGeneration(values[1])));
     }).catch(err => {
         res.status(500).type('text').send("internal server error: \n" + err);
     });
