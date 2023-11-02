@@ -38,7 +38,12 @@
                     <div class="cell small-12 medium-12 large-12" style="background-color: white;">
 
                         <h1>$STATE_NAME$</h1>
-                        <img src="$StateSource$"/>
+                        <div class="grid-x transparentBackground">
+                            <div class="cell small-4 medium-4 large-4 align-center">
+                                <img src="$StateSource$"/>
+                            </div> 
+                        </div>
+                        
                         <table>
                             <thead>
                                 <tr>
@@ -62,6 +67,7 @@
                                 marker: {size: 12}
                             }]);
                         </script>
+
                         <img src = "./../us-state-flags-svg/flags/$$STATE_FLAG$$" alt="flag"/>
                         <h3>Click a state below:</h3>
                         <a href="/politicalCorrelationByState/AL" targets="_self">Alabama</a>
