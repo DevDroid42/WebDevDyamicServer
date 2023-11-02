@@ -124,6 +124,8 @@ function barGraphGeneration(list){
     res += "</script>\n";
 }
 
+
+
 function queryDatabase(query, params){
     return new Promise((Resolve, Reject) =>{
         db.all(query, params, (err, rows) =>{
