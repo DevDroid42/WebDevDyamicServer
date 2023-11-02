@@ -4,7 +4,6 @@ import * as url from 'node:url';
 
 import { default as express } from 'express';
 import { default as sqlite3 } from 'sqlite3';
-import Plotly from 'plotly.js-dist-min';
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
@@ -257,9 +256,11 @@ app.get('/pviByGrouping/:group', (req, res) => {
     let group = req.params.group;
     Promise.all([getTemplate('pviByGrouping.html'),
     queryDatabase("SELECT pvi_22 FROM Urbanization WHERE grouping=?", [group])]).then(values=>{
-        res.status(200).type('html').send(values[0].replace("$data$", tableGeneration(values[1])));
-        res.status(200).type('html').send(values[0].replace("$xAxis$", scatterGraphXAxisGeneration(values[1])));
-        res.status(200).type('html').send(values[0].replace("$yAxis$", scatterGraphYAxisGeneration(values[1])));
+        res.status(200).type('html').send(
+            values[0].replace("$data$", tableGeneration(values[1])))
+            .replace("$xAxis$", scatterGraphXAxisGeneration(values[1]))
+            .replace("$yAxis$", scatterGraphYAxisGeneration(values[1])
+        );
     }).catch(err => {
         res.status(500).type('text').send("internal server error: \n" + err);
     });
@@ -271,9 +272,11 @@ app.get('/pviGreaterThan', (req, res) => {
     if (value == null) value = 0;
     Promise.all([getTemplate('greaterThanLessThan.html'),
     queryDatabase("SELECT * FROM Urbanization WHERE pvi_22>?", [value])]).then(values=>{
-        res.status(200).type('html').send(values[0].replace("$data$", tableGeneration(values[1])));
-        res.status(200).type('html').send(values[0].replace("$xAxis$", scatterGraphXAxisGeneration(values[1])));
-        res.status(200).type('html').send(values[0].replace("$yAxis$", scatterGraphYAxisGeneration(values[1])));
+        res.status(200).type('html').send(
+            values[0].replace("$data$", tableGeneration(values[1]))
+            .replace("$xAxis$", scatterGraphXAxisGeneration(values[1]))
+            .replace("$yAxis$", scatterGraphYAxisGeneration(values[1]))
+        );
     }).catch(err => {
         res.status(500).type('text').send("internal server error: \n" + err);
     });
@@ -285,9 +288,11 @@ app.get('/pviLessThan', (req, res) => {
     if (value == null) value = 0;
     Promise.all([getTemplate('greaterThanLessThan.html'),
     queryDatabase("SELECT * FROM Urbanization WHERE pvi_22<?", [value])]).then(values=>{
-        res.status(200).type('html').send(values[0].replace("$data$", tableGeneration(values[1])));
-        res.status(200).type('html').send(values[0].replace("$xAxis$", scatterGraphXAxisGeneration(values[1])));
-        res.status(200).type('html').send(values[0].replace("$yAxis$", scatterGraphYAxisGeneration(values[1])));
+        res.status(200).type('html').send(
+            values[0].replace("$data$", tableGeneration(values[1]))
+            .replace("$xAxis$", scatterGraphXAxisGeneration(values[1]))
+            .replace("$yAxis$", scatterGraphYAxisGeneration(values[1]))
+        );
     }).catch(err => {
         res.status(500).type('text').send("internal server error: \n" + err);
     });
