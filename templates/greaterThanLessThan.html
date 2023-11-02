@@ -52,7 +52,11 @@
                             Plotly.newPlot(SCATTER, [{
                                 x: [$xAxis$],
                                 y: [$yAxis$],
-                                type: 'scatter'
+                                type: 'scatter',
+                                mode: 'markers',
+                                xaxis: {title: 'Urban Index'},
+                                yaxis: {title: 'pvi'},
+                                marker: {size: 12}
                             }]);
                         </script>      
                     </div>
