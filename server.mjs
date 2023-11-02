@@ -241,6 +241,11 @@ app.get('/politicalCorrelationByState/:state', (req, res) => {
             stateImgSrc = "/us-w2560/" + item.name;
         }
     });
+    for (let index = 0; index < states.length; index++) {
+        const currState = states[index];
+        if 
+        
+    }
     Promise.all([getTemplate('politicalCorrelationByState.html'),
     queryDatabase("SELECT * FROM Urbanization WHERE State=?", [state])]).then(values=>{
         console.log(values[0].replace("$data$", tableGeneration(values[1])));
