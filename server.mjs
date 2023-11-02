@@ -111,7 +111,7 @@ function barGraphXAxisGeneration(list){
     const y_axis_values = [];
     for (let i = 0; i < list.length; i++) {
         //x_axis_values.push(list[i]["stcd"]);
-        x_axis_values.push(list[i]["state"] + "-" + list[i]["cd"]);
+        x_axis_values.push(list[i]["urbanindex"]);
         y_axis_values.push(list[i]["pvi_22"]);
     }
     console.log(x_axis_values);
@@ -124,7 +124,7 @@ function barGraphXAxisGeneration(list){
     ];
     res += "Plotly.newPlot('BAR', " + data + ");\n";
     res += "</script>\n";
-    return x_axis_values;
+    return x_axis_values.to;
 }
 
 function barGraphYAxisGeneration(list){
@@ -134,7 +134,7 @@ function barGraphYAxisGeneration(list){
     const x_axis_values = [];
     const y_axis_values = [];
     for (let i = 0; i < list.length; i++) {
-        x_axis_values.push(list[i]["stcd"]);
+        x_axis_values.push(list[i]["urbanindex"]);
         //x_axis_values.push(list[i]["state"] + "-" + list[i]["cd"]);
         y_axis_values.push(list[i]["pvi_22"]);
     }
@@ -159,7 +159,7 @@ function scatterGraphXAxisGeneration(list){
     const y_axis_values = [];
     for (let i = 0; i < list.length; i++) {
         //x_axis_values.push(list[i]["stcd"]);
-        x_axis_values.push(list[i]["grouping"]);
+        x_axis_values.push(list[i]["urbanindex"]);
         y_axis_values.push(list[i]["pvi_22"]);
     }
     console.log(x_axis_values);
@@ -183,7 +183,7 @@ function scatterGraphYAxisGeneration(list){
     const y_axis_values = [];
     for (let i = 0; i < list.length; i++) {
         //x_axis_values.push(list[i]["stcd"]);
-        x_axis_values.push(list[i]["grouping"]);
+        x_axis_values.push(list[i]["urbanindex"]);
         y_axis_values.push(list[i]["pvi_22"]);
     }
     console.log(x_axis_values);
