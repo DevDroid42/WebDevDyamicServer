@@ -5,6 +5,7 @@ import * as url from 'node:url';
 import { default as express } from 'express';
 import { default as sqlite3 } from 'sqlite3';
 import { rejects } from 'node:assert';
+import { default as Plotly } from 'plotly.js-dist-min';
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
@@ -100,6 +101,28 @@ function tableGeneration(list){
     return res;
 }
 
+function barGraphGeneration(list){
+    //let res = "<script>\n";
+    //res += "BAR = document.getElementById('bar');\n";
+    //res += "Plotly."
+
+    const x_axis_values = [];
+    const y_axis_values = [];
+    for (let i = 0; i < list.length; i++) {
+        x_axis_values.push(list[i]["stcd"]);
+        //x_axis_values.push(list[i]["state"] + "-" + list[i]["cd"]);
+        y_axis_values.push(list[i]["pvi_22"]);
+    }
+    var data = [
+        {
+            x: x_axis_values,
+            y: y_axis_values,
+            type: 'bar'
+        }
+    ];
+    return Plotly.newPlot('bar', data);
+    //res += "</script>\n";
+}
 
 function queryDatabase(query, params){
     return new Promise((Resolve, Reject) =>{
