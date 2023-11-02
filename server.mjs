@@ -142,6 +142,7 @@ app.get('/politicalCorrelationByState/:state', (req, res) => {
     let state = req.params.state.toUpperCase();
     Promise.all([getTemplate('politicalCorrelationByState.html'),
     queryDatabase("SELECT * FROM Urbanization WHERE State=?", [state])]).then(values=>{
+        console.log("Hello");
         console.log(values[0].replace("$data$", tableGeneration(values[1])));
         res.status(200).type('html').send(values[0].replace("$data$", tableGeneration(values[1])));
     }).catch(err => {
