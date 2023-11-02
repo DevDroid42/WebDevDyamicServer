@@ -224,15 +224,6 @@ let app = express();
 app.use(express.static(root));
 
 //this template can be copied for other routes
-app.get('/', (req, res) => {
-    getTemplate('index.html').then(data=>{
-        res.status(200).type('html').send(data);
-    }).catch(err => {
-        res.status(500).type('text').send("internal server error: \n" + err);
-    });
-});
-
-//this template can be copied for other routes
 app.get('/politicalCorrelationByState/:state', (req, res) => {
     let state = req.params.state.toUpperCase();
     let stateImgSrc = "";
