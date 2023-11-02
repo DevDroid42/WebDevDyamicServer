@@ -123,7 +123,7 @@ function barGraphXAxisGeneration(list){
     ];
     res += "Plotly.newPlot('BAR', " + data + ");\n";
     res += "</script>\n";
-    return x_axis_values;
+    return x_axis_values.toString();
 }
 function barGraphYAxisGeneration(list){
     let res = "<script>\n";
