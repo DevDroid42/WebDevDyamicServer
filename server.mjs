@@ -120,7 +120,7 @@ function barGraphGeneration(list){
             type: 'bar'
         }
     ];
-    res += "Plotly.newPlot('BAR', " + data + ")\n";
+    res += "Plotly.newPlot('BAR', " + data + ");\n";
     res += "</script>\n";
 }
 
