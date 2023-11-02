@@ -8,81 +8,115 @@
         <title> Template </title>
         <link rel="stylesheet" href="/css/style.css"/>
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <div class="off-canvas-content" data-off-canvas-content>
+            <div class="grid-container">
+                <div class="grid-x grid-padding-x">   
+                    <div class="cell small-12 medium-12 large-12" style="background-color: white;">
+                        <h4>
+                            <div class="topnav">
+                                <a href="/templates/index.html" targets="_self">Home </a>
+                                <a href="/templates/politicalCorrelationByState.html" targets="_self">Route 1</a>
+                                <a href="/templates/greaterThanLessThan.html" targets="_self">Route 2</a>
+                                <a href="/templates/pviByGrouping.html" targets="_self">Route 3</a>
+                                <a href="/templates/sources.html" targets="_self">Sources</a>
+                            </div>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
     </head>
     <Body>
-        <h1>$STATE_NAME$</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>State</th>
-                    <th>cd</th>
-                    <th>pvi_22</th>
-                </tr>
-            </thead>
-            <tbody>
-                $data$
-            </tbody>
-        </table>
-        <div id="scatter" style="width:600px;height:250px"></div>
-        <script>
-            BAR = document.getElementById('scatter');
-            Plotly.newPlot(BAR, [{
-                x: [$xAxis$],
-                y: [$yAxis$],
-                type: 'scatter'
-            }]);
-        </script>
-        <img src = "./../us-state-flags-svg/flags/$$STATE_FLAG$$" alt="flag"/>
-        <h3>Click a state below:</h3>
-        <a href="/politicalCorrelationByState/AL" targets="_self">Alabama</a>
-        <a href="/politicalCorrelationByState/AK" targets="_self">Alaska </a>
-        <a href="/politicalCorrelationByState/AZ" targets="_self">Arizona </a>
-        <a href="/politicalCorrelationByState/AR" targets="_self"> Arkansas</a>
-        <a href="/politicalCorrelationByState/CA" targets="_self">California</a>
-        <a href="/politicalCorrelationByState/CO" targets="_self">Colorado</a>
-        <a href="/politicalCorrelationByState/CT" targets="_self">Connecticut </a>
-        <a href="/politicalCorrelationByState/DE" targets="_self">Delaware</a>
-        <a href="/politicalCorrelationByState/FL" targets="_self"> Florida</a>
-        <a href="/politicalCorrelationByState/GA" targets="_self">Georgia</a>
-        <a href="/politicalCorrelationByState/HI" targets="_self">Hawaii</a>
-        <a href="/politicalCorrelationByState/ID" targets="_self">Idaho</a>
-        <a href="/politicalCorrelationByState/IL" targets="_self">Illinois</a>
-        <a href="/politicalCorrelationByState/IN" targets="_self">Indiana</a>
-        <a href="/politicalCorrelationByState/IA" targets="_self">Iowa</a>
-        <a href="/politicalCorrelationByState/KS" targets="_self">Kansas</a>
-        <a href="/politicalCorrelationByState/KY" targets="_self">Kentucky</a>
-        <a href="/politicalCorrelationByState/LA" targets="_self">Louisiana</a>
-        <a href="/politicalCorrelationByState/ME" targets="_self">Maine</a>
-        <a href="/politicalCorrelationByState/MD" targets="_self">Maryland</a>
-        <a href="/politicalCorrelationByState/MA" targets="_self">Massachusetts</a>
-        <a href="/politicalCorrelationByState/MI" targets="_self">Michigan</a>
-        <a href="/politicalCorrelationByState/MN" targets="_self">Minnesota</a>
-        <a href="/politicalCorrelationByState/MS" targets="_self">Mississippi</a>
-        <a href="/politicalCorrelationByState/MO" targets="_self">Missouri</a>
-        <a href="/politicalCorrelationByState/MT" targets="_self">Montana</a>
-        <a href="/politicalCorrelationByState/NE" targets="_self">Nebraska</a>
-        <a href="/politicalCorrelationByState/NV" targets="_self">Nevada</a>
-        <a href="/politicalCorrelationByState/NH" targets="_self">New Hampshire</a>
-        <a href="/politicalCorrelationByState/NJ" targets="_self">New Jersey</a>
-        <a href="/politicalCorrelationByState/NM" targets="_self">New Mexico</a>
-        <a href="/politicalCorrelationByState/NY" targets="_self">New York</a>
-        <a href="/politicalCorrelationByState/NC" targets="_self">North Carolina</a>
-        <a href="/politicalCorrelationByState/ND" targets="_self">North Dakota</a>
-        <a href="/politicalCorrelationByState/OH" targets="_self">Ohio</a>
-        <a href="/politicalCorrelationByState/OK" targets="_self">Oklahoma</a>
-        <a href="/politicalCorrelationByState/OR" targets="_self">Oregon</a>
-        <a href="/politicalCorrelationByState/PA" targets="_self">Pennsylvania</a>
-        <a href="/politicalCorrelationByState/RI" targets="_self">Rhode Island</a>
-        <a href="/politicalCorrelationByState/SC" targets="_self">South Carolina</a>
-        <a href="/politicalCorrelationByState/SD" targets="_self">South Dakota</a>
-        <a href="/politicalCorrelationByState/TN" targets="_self">Tennessee</a>
-        <a href="/politicalCorrelationByState/TX" targets="_self">Texas</a>
-        <a href="/politicalCorrelationByState/UT" targets="_self">Utah</a>
-        <a href="/politicalCorrelationByState/VT" targets="_self">Vermont</a>
-        <a href="/politicalCorrelationByState/VA" targets="_self">Virginia</a>
-        <a href="/politicalCorrelationByState/WA" targets="_self">Washington</a>
-        <a href="/politicalCorrelationByState/WV" targets="_self">West Virginia</a>
-        <a href="/politicalCorrelationByState/WI" targets="_self">Wisconsin</a>
-        <a href="/politicalCorrelationByState/WY" targets="_self">Wyoming</a>
+               
+        <!-- Your page content lives here -->
+        <div class="off-canvas-content" data-off-canvas-content>
+            <!-- main content within a `grid-container` -->
+            <div class="grid-container">
+                <!-- `grid-x` represents a row -->
+                <div class="grid-x grid-padding-x">
+                                
+                    <div class="cell small-12 medium-12 large-12" style="background-color: white;">
+
+                        <h1>$STATE_NAME$</h1>
+                        <img src="$StateSource$"/>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>State</th>
+                                    <th>cd</th>
+                                    <th>pvi_22</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                $data$
+                            </tbody>
+                        </table>
+                        <div id="scatter" style="width:600px;height:250px"></div>
+                        <script>
+                            BAR = document.getElementById('scatter');
+                            Plotly.newPlot(BAR, [{
+                                x: [$xAxis$],
+                                y: [$yAxis$],
+                                type: 'scatter',
+                                mode: 'markers',
+                                marker: {size: 12}
+                            }]);
+                        </script>
+                        <img src = "./../us-state-flags-svg/flags/$$STATE_FLAG$$" alt="flag"/>
+                        <h3>Click a state below:</h3>
+                        <a href="/politicalCorrelationByState/AL" targets="_self">Alabama</a>
+                        <a href="/politicalCorrelationByState/AK" targets="_self">Alaska </a>
+                        <a href="/politicalCorrelationByState/AZ" targets="_self">Arizona </a>
+                        <a href="/politicalCorrelationByState/AR" targets="_self"> Arkansas</a>
+                        <a href="/politicalCorrelationByState/CA" targets="_self">California</a>
+                        <a href="/politicalCorrelationByState/CO" targets="_self">Colorado</a>
+                        <a href="/politicalCorrelationByState/CT" targets="_self">Connecticut </a>
+                        <a href="/politicalCorrelationByState/DE" targets="_self">Delaware</a>
+                        <a href="/politicalCorrelationByState/FL" targets="_self"> Florida</a>
+                        <a href="/politicalCorrelationByState/GA" targets="_self">Georgia</a>
+                        <a href="/politicalCorrelationByState/HI" targets="_self">Hawaii</a>
+                        <a href="/politicalCorrelationByState/ID" targets="_self">Idaho</a>
+                        <a href="/politicalCorrelationByState/IL" targets="_self">Illinois</a>
+                        <a href="/politicalCorrelationByState/IN" targets="_self">Indiana</a>
+                        <a href="/politicalCorrelationByState/IA" targets="_self">Iowa</a>
+                        <a href="/politicalCorrelationByState/KS" targets="_self">Kansas</a>
+                        <a href="/politicalCorrelationByState/KY" targets="_self">Kentucky</a>
+                        <a href="/politicalCorrelationByState/LA" targets="_self">Louisiana</a>
+                        <a href="/politicalCorrelationByState/ME" targets="_self">Maine</a>
+                        <a href="/politicalCorrelationByState/MD" targets="_self">Maryland</a>
+                        <a href="/politicalCorrelationByState/MA" targets="_self">Massachusetts</a>
+                        <a href="/politicalCorrelationByState/MI" targets="_self">Michigan</a>
+                        <a href="/politicalCorrelationByState/MN" targets="_self">Minnesota</a>
+                        <a href="/politicalCorrelationByState/MS" targets="_self">Mississippi</a>
+                        <a href="/politicalCorrelationByState/MO" targets="_self">Missouri</a>
+                        <a href="/politicalCorrelationByState/MT" targets="_self">Montana</a>
+                        <a href="/politicalCorrelationByState/NE" targets="_self">Nebraska</a>
+                        <a href="/politicalCorrelationByState/NV" targets="_self">Nevada</a>
+                        <a href="/politicalCorrelationByState/NH" targets="_self">New Hampshire</a>
+                        <a href="/politicalCorrelationByState/NJ" targets="_self">New Jersey</a>
+                        <a href="/politicalCorrelationByState/NM" targets="_self">New Mexico</a>
+                        <a href="/politicalCorrelationByState/NY" targets="_self">New York</a>
+                        <a href="/politicalCorrelationByState/NC" targets="_self">North Carolina</a>
+                        <a href="/politicalCorrelationByState/ND" targets="_self">North Dakota</a>
+                        <a href="/politicalCorrelationByState/OH" targets="_self">Ohio</a>
+                        <a href="/politicalCorrelationByState/OK" targets="_self">Oklahoma</a>
+                        <a href="/politicalCorrelationByState/OR" targets="_self">Oregon</a>
+                        <a href="/politicalCorrelationByState/PA" targets="_self">Pennsylvania</a>
+                        <a href="/politicalCorrelationByState/RI" targets="_self">Rhode Island</a>
+                        <a href="/politicalCorrelationByState/SC" targets="_self">South Carolina</a>
+                        <a href="/politicalCorrelationByState/SD" targets="_self">South Dakota</a>
+                        <a href="/politicalCorrelationByState/TN" targets="_self">Tennessee</a>
+                        <a href="/politicalCorrelationByState/TX" targets="_self">Texas</a>
+                        <a href="/politicalCorrelationByState/UT" targets="_self">Utah</a>
+                        <a href="/politicalCorrelationByState/VT" targets="_self">Vermont</a>
+                        <a href="/politicalCorrelationByState/VA" targets="_self">Virginia</a>
+                        <a href="/politicalCorrelationByState/WA" targets="_self">Washington</a>
+                        <a href="/politicalCorrelationByState/WV" targets="_self">West Virginia</a>
+                        <a href="/politicalCorrelationByState/WI" targets="_self">Wisconsin</a>
+                        <a href="/politicalCorrelationByState/WY" targets="_self">Wyoming</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </Body>
 </html>
