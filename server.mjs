@@ -109,8 +109,8 @@ function barGraphXAxisGeneration(list){
     const x_axis_values = [];
     const y_axis_values = [];
     for (let i = 0; i < list.length; i++) {
-        x_axis_values.push(list[i]["stcd"]);
-        //x_axis_values.push(list[i]["state"] + "-" + list[i]["cd"]);
+        //x_axis_values.push(list[i]["stcd"]);
+        x_axis_values.push(list[i]["state"] + "-" + list[i]["cd"]);
         y_axis_values.push(list[i]["pvi_22"]);
     }
     console.log(x_axis_values);
@@ -123,7 +123,7 @@ function barGraphXAxisGeneration(list){
     ];
     res += "Plotly.newPlot('BAR', " + data + ");\n";
     res += "</script>\n";
-    return x_axis_values.toString();
+    return x_axis_values;
 }
 function barGraphYAxisGeneration(list){
     let res = "<script>\n";
