@@ -249,8 +249,8 @@ app.get('/politicalCorrelationByState/:state', (req, res) => {
         console.log(values[0].replace("$data$", tableGeneration(values[1])));
         res.status(200).type('html').send(
             values[0].replace("$data$", tableGeneration(values[1])).
-            replace("$xAxis$", barGraphXAxisGeneration(values[1])).
-            replace("$yAxis$", barGraphYAxisGeneration(values[1])).
+            replace("$xAxis$", scatterGraphXAxisGeneration(values[1])).
+            replace("$yAxis$", scatterGraphYAxisGeneration(values[1])).
             replace("$STATE_NAME$", state).
             replace("$StateSource$", stateImgSrc)
         );
