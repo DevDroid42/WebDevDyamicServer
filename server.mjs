@@ -4,8 +4,6 @@ import * as url from 'node:url';
 
 import { default as express } from 'express';
 import { default as sqlite3 } from 'sqlite3';
-import { rejects } from 'node:assert';
-import { default as Plotly } from 'plotly.js-dist-min';
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
@@ -169,8 +167,11 @@ app.get('/politicalCorrelationByState/:state', (req, res) => {
     Promise.all([getTemplate('politicalCorrelationByState.html'),
     queryDatabase("SELECT * FROM Urbanization WHERE State=?", [state])]).then(values=>{
         console.log(values[0].replace("$data$", tableGeneration(values[1])));
-        res.status(200).type('html').send(values[0].replace("$data$", tableGeneration(values[1])));
-        res.status(200).type('html').send(values[0].replace("$graph$", barGraphGeneration(values[1])));
+        res.status(200).type('html').send(
+            values[0].replace("$data$", tableGeneration(values[1])).
+            replace("$graph$", barGraphGeneration(values[1])).
+            replace("$STATE_NAME$", state)
+        );
     }).catch(err => {
         res.status(500).type('text').send("internal server error: \n" + err);
     });
