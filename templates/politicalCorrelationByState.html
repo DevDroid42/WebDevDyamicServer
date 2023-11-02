@@ -25,10 +25,10 @@
         </table>
         <div id="bar" style="width:600px;height:250px"></div>
         <script>
-            BAR = document.getElementByID('bar');
+            BAR = document.getElementById('bar');
             Plotly.newPlot( BAR, [{
-                x: "[" + $xAxis$ + "],",
-                y: "[" + $yAxis$ + "],",
+                x: [$xAxis$],
+                y: [$yAxis$],
                 type: 'bar'
             }]);
         </script>
