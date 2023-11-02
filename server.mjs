@@ -257,7 +257,7 @@ app.get('/politicalCorrelationByState/:state', (req, res) => {
 app.get('/pviByGrouping/:group', (req, res) => {
     let group = req.params.group;
     Promise.all([getTemplate('pviByGrouping.html'),
-    queryDatabase("SELECT pvi_22 FROM Urbanization WHERE grouping=?", [group])]).then(values=>{
+    queryDatabase("SELECT * FROM Urbanization WHERE grouping=?", [group])]).then(values=>{
         res.status(200).type('html').send(
             values[0].replace("$data$", tableGeneration(values[1]))
             .replace("$xAxis$", scatterGraphXAxisGeneration(values[1]))
