@@ -102,9 +102,9 @@ function tableGeneration(list){
 }
 
 function barGraphGeneration(list){
-    //let res = "<script>\n";
-    //res += "BAR = document.getElementById('bar');\n";
-    //res += "Plotly."
+    let res = "<script>\n";
+    res += "BAR = document.getElementById('bar');\n";
+    
 
     const x_axis_values = [];
     const y_axis_values = [];
@@ -120,8 +120,8 @@ function barGraphGeneration(list){
             type: 'bar'
         }
     ];
-    return Plotly.newPlot('bar', data);
-    //res += "</script>\n";
+    res += "Plotly.newPlot('BAR', " + data + ")\n";
+    res += "</script>\n";
 }
 
 function queryDatabase(query, params){
@@ -168,7 +168,7 @@ app.get('/politicalCorrelationByState/:state', (req, res) => {
         console.log("Hello");
         console.log(values[0].replace("$data$", tableGeneration(values[1])));
         res.status(200).type('html').send(values[0].replace("$data$", tableGeneration(values[1])));
-        res.status(200).type('html').send(barGraphGeneration(values[1]));
+        res.status(200).type('html').send(values[0].replace("$graph$", barGraphGeneration(values[1])));
     }).catch(err => {
         res.status(500).type('text').send("internal server error: \n" + err);
     });
