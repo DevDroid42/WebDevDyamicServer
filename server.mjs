@@ -64,12 +64,10 @@ var usStates = [
     { name: 'wy.png', abbreviation: 'WY' }
   ];  
 
-
-  //for abbr in listofusstates:
-  //  match abbrYourLoookingFor with AbbrInUSStatesList:
-    //    When MatchIsFound:
-      //      Access like so: usStates[abbr].name = stateName
-  //fileName = "Flag_of_" + stateName + ".svg"
+  const states = ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI',
+  'ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO',
+  'MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI',
+  'SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY'];
 
 const db = new sqlite3.Database(path.join(__dirname, 'urbanization.sqlite3'), sqlite3.OPEN_READONLY, (err) => {
     if (err) {
@@ -237,6 +235,12 @@ app.get('/', (req, res) => {
 //this template can be copied for other routes
 app.get('/politicalCorrelationByState/:state', (req, res) => {
     let state = req.params.state.toUpperCase();
+    let stateImgSrc = "";
+    usStates.forEach(item => {
+        if(item.abbreviation == state){
+            stateImgSrc = "/us-w2560/" + item.name;
+        }
+    });
     Promise.all([getTemplate('politicalCorrelationByState.html'),
     queryDatabase("SELECT * FROM Urbanization WHERE State=?", [state])]).then(values=>{
         console.log(values[0].replace("$data$", tableGeneration(values[1])));
@@ -244,7 +248,8 @@ app.get('/politicalCorrelationByState/:state', (req, res) => {
             values[0].replace("$data$", tableGeneration(values[1])).
             replace("$xAxis$", barGraphXAxisGeneration(values[1])).
             replace("$yAxis$", barGraphYAxisGeneration(values[1])).
-            replace("$STATE_NAME$", state)
+            replace("$STATE_NAME$", state).
+            replace("$StateSource$", stateImgSrc)
         );
     }).catch(err => {
         res.status(500).type('text').send("internal server error: \n" + err);
