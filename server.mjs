@@ -102,7 +102,7 @@ function tableGeneration(list){
     return res;
 }
 
-function barGraphGeneration(list){
+function barGraphXAxisGeneration(list){
     let res = "<script>\n";
     res += "BAR = document.getElementById('bar');\n";
     
@@ -123,8 +123,31 @@ function barGraphGeneration(list){
     ];
     res += "Plotly.newPlot('BAR', " + data + ");\n";
     res += "</script>\n";
+    return x_axis_values;
 }
-
+function barGraphYAxisGeneration(list){
+    let res = "<script>\n";
+    res += "BAR = document.getElementById('bar');\n";
+    
+    const x_axis_values = [];
+    const y_axis_values = [];
+    for (let i = 0; i < list.length; i++) {
+        x_axis_values.push(list[i]["stcd"]);
+        //x_axis_values.push(list[i]["state"] + "-" + list[i]["cd"]);
+        y_axis_values.push(list[i]["pvi_22"]);
+    }
+    console.log(x_axis_values);
+    var data = [
+        {
+            x: x_axis_values,
+            y: y_axis_values,
+            type: 'bar'
+        }
+    ];
+    res += "Plotly.newPlot('BAR', " + data + ");\n";
+    res += "</script>\n";
+    return y_axis_values;
+}
 
 
 function queryDatabase(query, params){
@@ -171,7 +194,8 @@ app.get('/politicalCorrelationByState/:state', (req, res) => {
         console.log(values[0].replace("$data$", tableGeneration(values[1])));
         res.status(200).type('html').send(
             values[0].replace("$data$", tableGeneration(values[1])).
-            replace("$graph$", barGraphGeneration(values[1])).
+            replace("$xAxis$", barGraphXAxisGeneration(values[1])).
+            replace("$yAxis$", barGraphYAxisGeneration(values[1])).
             replace("$STATE_NAME$", state)
         );
     }).catch(err => {
