@@ -23,13 +23,15 @@
                 $data$
             </tbody>
         </table>
-        <div id="bar" style="width:600px;height:250px"></div>
+        <div id="scatter" style="width:600px;height:250px"></div>
         <script>
-            BAR = document.getElementById('bar');
+            BAR = document.getElementById('scatter');
             Plotly.newPlot(BAR, [{
                 x: [$xAxis$],
                 y: [$yAxis$],
-                type: 'bar'
+                type: 'scatter',
+                mode: 'markers',
+                marker: {size: 12}
             }]);
         </script>
         <img src = "./../us-state-flags-svg/flags/$$STATE_FLAG$$" alt="flag"/>
