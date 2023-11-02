@@ -7,7 +7,7 @@
         <meta name="viewpoint" content="width=device-width, initial-scale=1"/>
         <title> Template </title>
         <link rel="stylesheet" href="/css/style.css"/>
-        <script src="plotly-2.27.0.min.js" charset="utf-8"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"script>
     </head>
     <Body>
         <h1>$STATE_NAME$</h1>
@@ -26,7 +26,7 @@
         <div id="bar" style="width:600px;height:250px"></div>
         <script>
             BAR = document.getElementById('bar');
-            Plotly.newPlot( BAR, [{
+            Plotly.newPlot(BAR, [{
                 x: [$xAxis$],
                 y: [$yAxis$],
                 type: 'bar'
