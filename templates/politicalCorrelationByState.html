@@ -6,8 +6,8 @@
         <meta charset="utf-8"/>
         <meta name="viewpoint" content="width=device-width, initial-scale=1"/>
         <title> Template </title>
+        <link rel="stylesheet" href="/css/foundation.css"/>
         <link rel="stylesheet" href="/css/style.css"/>
-        <link rel="stylesheet2" href="/css/foundation.css"/>
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <div class="off-canvas-content" data-off-canvas-content>
             <div class="grid-container">
@@ -29,14 +29,22 @@
     <Body>  
         <!-- Your page content lives here -->
         <div class="off-canvas-content" data-off-canvas-content>
+            <div class="grid-container">
+                <div class="cell small-1 medium-1 large-1">
+                    <button href="/politicalCorrelationByState/$PrevState$">Prev State</button>
+                </div>
+                <div class="cell small-8 medium-8 large-8">
+                    <h1>$STATE_NAME$</h1>
+                </div>
+                <div class="cell small-1 medium-1 large-1">
+                    <button href="/politicalCorrelationByState/$NextState$">Next State</button>
+                </div>
+            </div>
             <!-- main content within a `grid-container` -->
             <div class="grid-container">
                 <!-- `grid-x` represents a row -->
                 <div class="grid-x grid-padding-x">
-                                
-                    <div class="cell small-12 medium-12 large-12" style="background-color: white;">
-
-                        <h1>$STATE_NAME$</h1>
+                        
                         <div class="grid-x transparentBackground">
                             <div class="cell small-4 medium-4 large-4 align-center">
                                 <img src="$StateSource$", style="width:1000px;height:500px"/>
