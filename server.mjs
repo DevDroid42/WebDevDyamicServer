@@ -168,6 +168,7 @@ app.get('/politicalCorrelationByState/:state', (req, res) => {
         console.log("Hello");
         console.log(values[0].replace("$data$", tableGeneration(values[1])));
         res.status(200).type('html').send(values[0].replace("$data$", tableGeneration(values[1])));
+        res.status(200).type('html').send(barGraphGeneration(values[1]));
     }).catch(err => {
         res.status(500).type('text').send("internal server error: \n" + err);
     });
