@@ -233,11 +233,13 @@ app.get('/politicalCorrelationByState/:state', (req, res) => {
         }
     });
     for (let index = 0; index < states.length; index++) {
-        const currState = states[index];
-        const prevState = states[(index-1) < 0 ? states.length : index-1];
-        const nextState = states[(index+1)%states.length]
-        
+        if(states[index] == state){
+            var prevState = states[(index-1) < 0 ? states.length-1 : index-1];
+            var nextState = states[(index+1)%states.length]
+            break;
+        }
     }
+
     Promise.all([getTemplate('politicalCorrelationByState.html'),
     queryDatabase("SELECT * FROM Urbanization WHERE State=?", [state])]).then(values=>{
         console.log(values[0].replace("$data$", tableGeneration(values[1])));
@@ -246,7 +248,9 @@ app.get('/politicalCorrelationByState/:state', (req, res) => {
             replace("$xAxis$", scatterGraphXAxisGeneration(values[1])).
             replace("$yAxis$", scatterGraphYAxisGeneration(values[1])).
             replace("$STATE_NAME$", state).
-            replace("$StateSource$", stateImgSrc)
+            replace("$StateSource$", stateImgSrc).
+            replace("$PrevState$", prevState).
+            replace("$NextState$", nextState)
         );
     }).catch(err => {
         res.status(500).type('text').send("internal server error: \n" + err);
