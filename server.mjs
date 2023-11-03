@@ -247,7 +247,7 @@ app.get('/politicalCorrelationByState/:state', (req, res) => {
             values[0].replace("$data$", tableGeneration(values[1])).
             replace("$xAxis$", scatterGraphXAxisGeneration(values[1])).
             replace("$yAxis$", scatterGraphYAxisGeneration(values[1])).
-            replace("$STATE_NAME$", state).
+            replaceAll("$STATE_NAME$", state).
             replace("$StateSource$", stateImgSrc).
             replace("$PrevState$", prevState).
             replace("$NextState$", nextState)
