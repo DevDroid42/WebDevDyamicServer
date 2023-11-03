@@ -242,7 +242,10 @@ app.get('/politicalCorrelationByState/:state', (req, res) => {
 
     Promise.all([getTemplate('politicalCorrelationByState.html'),
     queryDatabase("SELECT * FROM Urbanization WHERE State=?", [state])]).then(values=>{
-        console.log(values[0].replace("$data$", tableGeneration(values[1])));
+        if(values[1].length == 0){
+            res.status(404).type('text').send("404 Error\nState: " + state + " not found in database");
+            return;
+        }
         res.status(200).type('html').send(
             values[0].replace("$data$", tableGeneration(values[1])).
             replace("$xAxis$", scatterGraphXAxisGeneration(values[1])).
@@ -262,6 +265,10 @@ app.get('/pviByGrouping/:group', (req, res) => {
     let group = req.params.group;
     Promise.all([getTemplate('pviByGrouping.html'),
     queryDatabase("SELECT * FROM Urbanization WHERE grouping=?", [group])]).then(values=>{
+        if(values[1].length == 0){
+            res.status(404).type('text').send("404 Error\nGroup: " + group + " not found in database");
+            return;
+        }
         res.status(200).type('html').send(
             values[0].replace("$data$", tableGeneration(values[1]))
             .replace("$xAxis$", scatterGraphXAxisGeneration(values[1]))
